@@ -1,0 +1,111 @@
+:root {
+  --bg: #0f1420;
+  --surface: #1a2130;
+  --surface-2: #222b3d;
+  --border: #2e3950;
+  --text: #e8ecf4;
+  --text-dim: #9aa5bb;
+  --accent: #4f8cff;
+  --accent-strong: #79a8ff;
+  --good: #34c98e;
+  --mid: #e8b23d;
+  --low: #8b93a6;
+  --radius: 10px;
+  font-size: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header { padding: 2.5rem 1.5rem 1rem; text-align: center; }
+header h1 { font-size: 2rem; letter-spacing: -0.02em; }
+.tagline { color: var(--text-dim); margin-top: 0.35rem; }
+
+main { width: min(860px, 100%); margin: 0 auto; padding: 1rem 1.5rem 3rem; flex: 1; }
+
+/* ---- search form ---- */
+#search-form {
+  display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem;
+}
+.field { display: flex; flex-direction: column; gap: 0.3rem; }
+.field.grow { flex: 1 1 240px; }
+label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+input, select {
+  background: var(--surface-2); color: var(--text);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 0.55rem 0.7rem; font-size: 1rem;
+}
+input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+button {
+  background: var(--accent); color: #fff; border: none; border-radius: 6px;
+  padding: 0.6rem 1.2rem; font-size: 1rem; font-weight: 600; cursor: pointer;
+}
+button:hover { background: var(--accent-strong); }
+button:disabled { opacity: 0.55; cursor: wait; }
+button.secondary {
+  background: transparent; color: var(--accent-strong);
+  border: 1px solid var(--border);
+}
+button.secondary:hover { border-color: var(--accent); background: var(--surface-2); }
+
+/* ---- status / notices ---- */
+#status {
+  margin-top: 1rem; padding: 0.8rem 1rem; border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--border); color: var(--text-dim);
+}
+#status.error { border-color: #b3494f; color: #f2a6ab; }
+#status.notice { border-color: var(--mid); color: var(--mid); }
+
+/* ---- results ---- */
+#results { margin-top: 1.5rem; }
+.results-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.results-header h2 { font-size: 1.1rem; font-weight: 600; color: var(--text-dim); }
+
+#lead-list { list-style: none; padding: 0; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem; }
+
+.lead {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.1rem;
+  display: grid; grid-template-columns: 2.4rem 1fr auto; gap: 0.35rem 0.9rem;
+}
+.lead .rank { grid-row: span 2; font-size: 1.15rem; font-weight: 700; color: var(--text-dim); align-self: start; padding-top: 0.1rem; }
+.lead .name { font-weight: 650; font-size: 1.05rem; }
+.lead .name a { color: var(--accent-strong); text-decoration: none; }
+.lead .name a:hover { text-decoration: underline; }
+.lead .meta { color: var(--text-dim); font-size: 0.88rem; grid-column: 2; }
+
+.scorebox { text-align: right; grid-row: span 2; min-width: 110px; }
+.score-num { font-weight: 700; font-size: 1.15rem; }
+.score-bar { height: 6px; background: var(--surface-2); border-radius: 3px; margin-top: 0.35rem; overflow: hidden; }
+.score-bar > span { display: block; height: 100%; border-radius: 3px; }
+.score-hi > span { background: var(--good); }
+.score-md > span { background: var(--mid); }
+.score-lo > span { background: var(--low); }
+
+.contacts { grid-column: 2 / 4; display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; font-size: 0.88rem; margin-top: 0.2rem; }
+.contacts a, .contacts span { color: var(--text-dim); text-decoration: none; }
+.contacts a:hover { color: var(--accent-strong); }
+
+.reasons { grid-column: 2 / 4; margin-top: 0.35rem; padding-left: 1.1rem; color: var(--text-dim); font-size: 0.88rem; }
+.reasons li + li { margin-top: 0.1rem; }
+
+footer { padding: 1.25rem; text-align: center; color: var(--text-dim); font-size: 0.8rem; }
+footer a { color: var(--text-dim); }
+
+@media (max-width: 560px) {
+  .lead { grid-template-columns: 1fr auto; }
+  .lead .rank { display: none; }
+  .lead .meta, .contacts, .reasons { grid-column: 1 / 3; }
+}

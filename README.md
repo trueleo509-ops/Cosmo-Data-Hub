@@ -34,7 +34,7 @@ Each project includes:
 
 ## Current Projects
 
-- Coming Soon...
+- [Lead Finder](lead-finder/) — a Flask web app that finds and ranks cold-outreach targets for a freelance data analyst by location, using OpenStreetMap data and a transparent scoring model.
 
 ## Future Roadmap
 

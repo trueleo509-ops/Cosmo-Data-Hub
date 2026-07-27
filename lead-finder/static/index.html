@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Finder — cold-outreach targets for data analysts</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Lead Finder</h1>
+  <p class="tagline">Find local businesses most likely to need a freelance data analyst — ranked by potential.</p>
+</header>
+
+<main>
+  <form id="search-form" autocomplete="off">
+    <div class="field grow">
+      <label for="location">Your location</label>
+      <input id="location" type="text" placeholder="e.g. Austin, TX or Manchester, UK" required>
+    </div>
+    <div class="field">
+      <label for="radius">Radius</label>
+      <select id="radius">
+        <option value="2">2 km</option>
+        <option value="5" selected>5 km</option>
+        <option value="10">10 km</option>
+        <option value="25">25 km</option>
+      </select>
+    </div>
+    <button type="submit" id="search-btn">Find leads</button>
+    <button type="button" id="demo-btn" class="secondary" title="Preview with sample data, no network needed">Try demo</button>
+  </form>
+
+  <div id="status" hidden></div>
+
+  <section id="results" hidden>
+    <div class="results-header">
+      <h2 id="results-title"></h2>
+      <button type="button" id="export-btn" class="secondary">Export CSV</button>
+    </div>
+    <ol id="lead-list"></ol>
+  </section>
+</main>
+
+<footer>
+  <p>Business data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors,
+  via Nominatim &amp; Overpass API. Scores estimate outreach potential from business category, contactability and scale signals.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
