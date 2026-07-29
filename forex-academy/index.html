@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PipQuest — Forex Trading Academy</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">📈 <b>PipQuest</b><span>Forex Trading Academy</span></div>
+  <div class="hstats">
+    <div class="hstat"><label>Balance</label><b id="hud-balance">$10,000</b></div>
+    <div class="hstat"><label>Win rate</label><b id="hud-winrate">—</b></div>
+    <div class="hstat"><label>Trades</label><b id="hud-trades">0</b></div>
+    <div class="hstat"><label>Progress</label><b id="hud-progress">0/18</b></div>
+  </div>
+  <button id="btn-reset" class="ghost small" title="Reset all progress">Reset</button>
+</header>
+
+<main>
+
+  <!-- ============ LEVEL MAP ============ -->
+  <section id="view-map" class="view active">
+    <div class="map-intro card">
+      <h1>Your journey from beginner to expert forex trader</h1>
+      <p>Each level is a lesson. Read it, pass the knowledge check, then prove it on the chart:
+      a live trade challenge built around exactly what you just learned.
+      <b>Win the trade to unlock the next level.</b> Lose, and you review and retry —
+      just like the real market, but with virtual money.</p>
+      <div class="legend">
+        <span><i class="dot done"></i> Completed</span>
+        <span><i class="dot open"></i> Unlocked</span>
+        <span><i class="dot lock"></i> Locked</span>
+      </div>
+    </div>
+    <div id="map-tiers"></div>
+    <div id="practice-slot"></div>
+  </section>
+
+  <!-- ============ LESSON ============ -->
+  <section id="view-lesson" class="view">
+    <div class="viewbar"><button class="ghost" id="btn-back-map">← Level map</button></div>
+    <div class="lesson-wrap">
+      <div class="lesson-head">
+        <span class="lvl-chip" id="lesson-chip"></span>
+        <h1 id="lesson-title"></h1>
+        <p class="sub" id="lesson-sub"></p>
+      </div>
+      <article id="lesson-content" class="card lesson-body"></article>
+      <div id="quiz-box" class="card"></div>
+      <div class="card mission-card">
+        <h3>🎯 Your mission</h3>
+        <p id="lesson-mission"></p>
+        <button id="btn-start-challenge" class="primary big" disabled>Start Trading Challenge</button>
+        <p class="muted" id="challenge-lock-note">Pass the knowledge check above to unlock the challenge.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GAME ============ -->
+  <section id="view-game" class="view">
+    <div class="game-top">
+      <button class="ghost" id="btn-quit-game">← Exit challenge</button>
+      <div class="game-title" id="game-title"></div>
+      <div class="pair-chip" id="game-pair"></div>
+    </div>
+    <div class="game-grid">
+      <div class="chart-col card">
+        <canvas id="chart"></canvas>
+        <canvas id="pane" class="hidden"></canvas>
+      </div>
+      <aside class="panel card">
+        <div class="mission-mini" id="game-mission"></div>
+
+        <div class="panel-sec">
+          <label class="sec-label">1 · Direction</label>
+          <div class="dir-row">
+            <button id="btn-buy" class="dir buy">▲ BUY</button>
+            <button id="btn-sell" class="dir sell">▼ SELL</button>
+          </div>
+        </div>
+
+        <div class="panel-sec">
+          <label class="sec-label">2 · Stop loss &amp; take profit <span class="muted">(drag lines on chart or edit)</span></label>
+          <div class="order-grid">
+            <div class="ofield"><label>Stop loss (pips)</label><input type="number" id="inp-sl" min="5" max="300" step="1"></div>
+            <div class="ofield"><label>Take profit (pips)</label><input type="number" id="inp-tp" min="5" max="600" step="1"></div>
+            <div class="ofield"><label>Risk per trade</label>
+              <select id="sel-risk">
+                <option value="0.005">0.5% of balance</option>
+                <option value="0.01" selected>1% of balance</option>
+                <option value="0.02">2% of balance</option>
+              </select>
+            </div>
+            <div class="ofield readout">
+              <div><label>Risk : Reward</label><b id="out-rr">—</b></div>
+              <div><label>$ at risk</label><b id="out-risk">—</b></div>
+            </div>
+          </div>
+        </div>
+
+        <label class="toggle"><input type="checkbox" id="chk-analysis" checked> Show analysis overlay</label>
+
+        <button id="btn-execute" class="primary big" disabled>3 · Execute trade</button>
+
+        <div class="speed-row hidden" id="speed-row">
+          <button class="ghost" id="btn-speed">Speed ×4</button>
+          <button class="ghost" id="btn-skip">Skip to result ⏩</button>
+        </div>
+        <div class="trade-status" id="trade-status"></div>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<div id="modal" class="modal hidden"><div class="modal-card" id="modal-card"></div></div>
+
+<script src="js/market.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/lessons.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -34,7 +34,7 @@ Each project includes:
 
 ## Current Projects
 
-- Coming Soon...
+- [📈 PipQuest — Forex Trading Academy](forex-academy/) — an interactive trading game that teaches forex from complete beginner to expert. 18 lessons as levels, each gated by a quiz and a live chart trade challenge you must win to advance. Vanilla JS + canvas, no dependencies — open `forex-academy/index.html` in a browser to play.
 
 ## Future Roadmap
 
