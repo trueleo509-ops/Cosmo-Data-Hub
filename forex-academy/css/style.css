@@ -28,7 +28,7 @@ input, select { font: inherit; }
 
 /* ---------- top bar ---------- */
 .topbar {
-  display: flex; align-items: center; gap: 18px;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 10px 18px;
   padding: 10px 20px;
   background: var(--panel);
   border-bottom: 1px solid var(--border);
@@ -37,7 +37,7 @@ input, select { font: inherit; }
 .brand { font-size: 18px; white-space: nowrap; }
 .brand b { margin-right: 8px; }
 .brand span { color: var(--muted); font-size: 12px; }
-.hstats { display: flex; gap: 22px; margin-left: auto; }
+.hstats { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-left: auto; }
 .hstat { text-align: right; }
 .hstat label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 .hstat b { font-size: 15px; }
@@ -252,6 +252,24 @@ main { max-width: 1240px; margin: 0 auto; padding: 22px 20px 60px; }
 
 @media (max-width: 900px) {
   .game-grid { grid-template-columns: 1fr; }
-  .hstats { gap: 12px; }
+  .hstats { gap: 8px 14px; }
   #chart { height: 380px; }
+}
+@media (max-width: 620px) {
+  main { padding: 16px 12px 44px; }
+  .topbar { padding: 8px 12px; gap: 6px 12px; }
+  .brand { font-size: 16px; flex: 1 1 auto; }
+  .brand span { display: none; }
+  .hstats { flex: 1 1 100%; margin-left: 0; justify-content: space-between; gap: 6px 10px; }
+  .hstat { text-align: left; }
+  .hstat b { font-size: 13px; }
+  #btn-reset { order: 2; }
+  .game-top { flex-wrap: wrap; gap: 8px 12px; }
+  .pair-chip { margin-left: 0; }
+  .order-grid { grid-template-columns: 1fr; }
+  .ofield.readout { grid-column: auto; }
+  #chart { height: 320px; }
+  .modal-card .rstats { gap: 14px; flex-wrap: wrap; }
+  .modal-card .btn-row { flex-direction: column; }
+  .lesson-body table { display: block; overflow-x: auto; }
 }

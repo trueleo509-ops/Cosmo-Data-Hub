@@ -332,6 +332,8 @@ function finish(outcome) {
   const pnl = Math.round(game.riskUsd * R);
   const win = outcome.type === "tp" || (outcome.type === "expiry" && pnl > 0);
 
+  $("#trade-status").innerHTML = `Closed: <span class="${pnl >= 0 ? "pos" : "neg"}">${movePips >= 0 ? "+" : ""}${movePips.toFixed(0)} pips · ${fmtUSD(pnl)}</span>`;
+  $("#btn-execute").textContent = "Trade closed";
   state.balance = Math.round(state.balance + pnl);
   state.trades++;
   if (win) state.wins++;
