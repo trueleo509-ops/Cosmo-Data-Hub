@@ -21,6 +21,10 @@ This repository showcases my journey into data science through practical, real-w
 - Data Visualization
 - Statistical Analysis
 
+## Projects
+
+- [Intern Logbook](intern-logbook/) — attendance logbook with time in/out, signatures and weekly 20-hour tracking.
+
 ## Repository Structure
 
 Each project includes:

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intern Logbook — Attendance</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">📒 <b>Intern Logbook</b><span>Daily attendance &amp; weekly hours</span></div>
+  <div class="who" id="who"></div>
+  <button id="btn-logout" class="ghost small hidden">Log out</button>
+</header>
+
+<main>
+
+  <!-- ============ FIRST-RUN SETUP (supervisor) ============ -->
+  <section id="view-setup" class="view">
+    <div class="card narrow">
+      <h1>Set up the logbook</h1>
+      <p class="muted">One-time setup by the supervisor. Interns will create their own PIN and
+      signature the first time they log in.</p>
+      <form id="form-setup">
+        <label>Supervisor name<input name="supName" required autocomplete="off"></label>
+        <label>Supervisor PIN (4–6 digits)<input name="supPin" required inputmode="numeric" pattern="\d{4,6}" type="password"></label>
+        <label>Intern 1 name<input name="intern1" required autocomplete="off"></label>
+        <label>Intern 2 name<input name="intern2" required autocomplete="off"></label>
+        <label>Weekly hour target<input name="target" type="number" min="1" max="80" step="0.5" value="20" required></label>
+        <button class="primary" type="submit">Create logbook</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ LOGIN ============ -->
+  <section id="view-login" class="view">
+    <div class="card narrow">
+      <h1>Who's logging in?</h1>
+      <div id="login-people" class="people"></div>
+      <form id="form-login" class="hidden">
+        <p id="login-hint" class="muted"></p>
+        <label>PIN<input name="pin" required inputmode="numeric" pattern="\d{4,6}" type="password" autocomplete="off"></label>
+        <p id="login-error" class="error"></p>
+        <div class="row">
+          <button type="button" class="ghost" id="login-back">Back</button>
+          <button class="primary" type="submit">Log in</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ INTERN FIRST LOGIN: PIN + SIGNATURE ============ -->
+  <section id="view-register" class="view">
+    <div class="card narrow">
+      <h1>Welcome, <span id="reg-name"></span>!</h1>
+      <p class="muted">This is your first login. Create a PIN and add your signature — it will be
+      stamped on every attendance entry you sign.</p>
+      <form id="form-register">
+        <label>Create a PIN (4–6 digits)<input name="pin" required inputmode="numeric" pattern="\d{4,6}" type="password" autocomplete="off"></label>
+        <label>Confirm PIN<input name="pin2" required inputmode="numeric" pattern="\d{4,6}" type="password" autocomplete="off"></label>
+        <div class="sig-label">Your signature <button type="button" class="ghost small" id="sig-clear">Clear</button></div>
+        <canvas id="sig-pad" class="sig-pad" width="600" height="200"></canvas>
+        <p class="muted small">Sign with your mouse, finger or stylus.</p>
+        <p id="reg-error" class="error"></p>
+        <div class="row">
+          <button type="button" class="ghost" id="reg-cancel">Cancel</button>
+          <button class="primary" type="submit">Save &amp; continue</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ INTERN DASHBOARD ============ -->
+  <section id="view-intern" class="view">
+    <div class="grid2">
+      <div class="card">
+        <h2>Today · <span id="i-today"></span></h2>
+        <div id="i-status" class="status"></div>
+        <div class="row">
+          <button class="primary big" id="btn-timein">Time in</button>
+          <button class="primary big" id="btn-timeout">Time out</button>
+        </div>
+        <p class="muted small">Your saved signature is stamped on the entry when you time in.</p>
+      </div>
+      <div class="card">
+        <h2>This week</h2>
+        <div id="i-week"></div>
+        <div class="sig-preview"><span class="muted small">Your signature on file</span><img id="i-sig" alt="signature"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <h2>My log</h2>
+        <div class="weeknav">
+          <button class="ghost small" data-week="-1">◀</button>
+          <span id="i-weeklabel"></span>
+          <button class="ghost small" data-week="1">▶</button>
+        </div>
+      </div>
+      <div id="i-table"></div>
+    </div>
+  </section>
+
+  <!-- ============ SUPERVISOR DASHBOARD ============ -->
+  <section id="view-supervisor" class="view">
+    <div class="card">
+      <div class="card-head">
+        <h2>Weekly summary</h2>
+        <div class="weeknav">
+          <button class="ghost small" data-week="-1">◀</button>
+          <span id="s-weeklabel"></span>
+          <button class="ghost small" data-week="1">▶</button>
+          <button class="ghost small" id="s-thisweek">This week</button>
+        </div>
+      </div>
+      <div id="s-summary" class="grid2"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h2>Attendance log</h2>
+        <div class="row">
+          <button class="primary small" id="s-add">+ Add entry</button>
+          <button class="ghost small" id="s-csv">Export CSV</button>
+          <button class="ghost small" id="s-print">Print</button>
+        </div>
+      </div>
+      <div id="s-table"></div>
+    </div>
+
+    <details class="card settings">
+      <summary>Settings</summary>
+      <form id="form-settings">
+        <label>Weekly hour target<input name="target" type="number" min="1" max="80" step="0.5" required></label>
+        <button class="primary small" type="submit">Save</button>
+      </form>
+      <div id="s-interns"></div>
+      <hr>
+      <button class="danger small" id="s-wipe">Erase all logbook data</button>
+    </details>
+  </section>
+
+</main>
+
+<!-- ============ ENTRY DIALOG (supervisor add/edit) ============ -->
+<dialog id="dlg-entry">
+  <form id="form-entry" method="dialog">
+    <h2 id="dlg-title">Add entry</h2>
+    <label>Intern<select name="internId" required></select></label>
+    <label>Date<input name="date" type="date" required></label>
+    <div class="row">
+      <label>Time in<input name="timeIn" type="time" required></label>
+      <label>Time out<input name="timeOut" type="time"></label>
+    </div>
+    <label>Note (optional)<input name="note" autocomplete="off" maxlength="120"></label>
+    <p class="muted small">Entries added by the supervisor stay unsigned until the intern signs them from their own login.</p>
+    <p id="dlg-error" class="error"></p>
+    <div class="row end">
+      <button type="button" class="ghost" id="dlg-cancel">Cancel</button>
+      <button class="primary" type="submit" value="save">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="js/app.js"></script>
+</body>
+</html>
