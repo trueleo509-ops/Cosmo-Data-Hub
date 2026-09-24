@@ -2,6 +2,22 @@
 
 An attendance logbook for a supervisor and two interns. Entries can be saved in a **SharePoint list** on the interns' SharePoint site, so the supervisor and both interns see the same logbook on any device. Without that connection, entries are saved only in the browser on the device you use.
 
+## Quickest option: the Excel workbook (IT doesn't need to do anything)
+
+**`Intern_Logbook.xlsx`** is a ready-made logbook for SharePoint. Upload it to the Interns site's **Documents** and open it in **Excel for the web**. The supervisor and both interns can then edit the same copy at the same time, and it needs no app registration.
+
+| Tab | What it's for |
+|---|---|
+| **Setup** | Enter the supervisor's name, the weekly target (20), the first week of the internship, and each intern's name and SharePoint calendar link (yellow cells). |
+| **Logbook** | One row per day: **Date, Intern** (drop-down), **Time In, Time Out, Signature** (type your full name). **Hours Worked**, **Week Of**, **Week-to-Date Hours** and **Remaining to Target** fill in by themselves. The top of the sheet links to both interns' calendars. |
+| **Weekly Summary** | Each intern's hours for every week (Mon–Sun), with the hours left and a status: ✓ Target met / In progress / Short by X hrs. |
+
+Built-in checks: if Time Out isn't after Time In, the Hours cell shows **Check times** and the row isn't counted. A dated row with no signature turns orange. When a week reaches the target it turns green. Excel's **Version History** records who entered or changed each row, which backs up the typed signatures.
+
+To show it on the Interns page, add a **File viewer** (or **Document library**) web part that points to the workbook.
+
+The web app below does more (drawn signatures, one-tap entry on a phone), but syncing it to SharePoint needs an Entra app registration by IT. Without that, the web app still works, but it saves entries only on the device where they were entered.
+
 ## Features
 - **SharePoint calendars.** Each intern's card has a button that opens their SharePoint calendar.
 - **Daily attendance sheet.** Columns: date, intern, time in, time out, signature (drawn with a mouse or finger) and hours worked. Hours are calculated for you.
@@ -59,6 +75,7 @@ These are *delegated* permissions: the app can only do what the signed-in person
 Edit the Interns page, add an **Embed** web part and paste the logbook's address. A site owner may first need to allow the hosting domain under *Site settings → HTML Field Security*.
 
 ## Files
+- `Intern_Logbook.xlsx`: the Excel logbook for SharePoint, with no setup needed from IT
 - `index.html`: the page layout and styles
 - `js/app.js`: the logbook: entries, weekly totals, signature pad, settings, export
 - `js/m365.js`: Microsoft sign-in and reading/writing the SharePoint list through Microsoft Graph

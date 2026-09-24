@@ -35,7 +35,7 @@ Each project includes:
 ## Current Projects
 
 - [📈 PipQuest — Forex Trading Academy](forex-academy/) — an interactive trading game that teaches forex from complete beginner to expert. 18 lessons as levels, each gated by a quiz and a live chart trade challenge you must win to advance. Vanilla JS + canvas, no dependencies — open `forex-academy/index.html` in a browser to play.
-- [📒 Intern Logbook](intern-logbook/) is an attendance logbook for a supervisor. It links to two interns' SharePoint calendars and records date, time in, time out, a signature and hours worked, with weekly totals measured against a 20-hour target. It can save entries to a SharePoint list through Microsoft 365, so the supervisor and interns share one logbook, and it exports to Excel (CSV). Open `intern-logbook/index.html`.
+- [📒 Intern Logbook](intern-logbook/) is an attendance logbook for a supervisor. It links to two interns' SharePoint calendars and records date, time in, time out, a signature and hours worked, with weekly totals measured against a 20-hour target. It comes with an Excel workbook that can be shared on SharePoint without any setup from IT. The web app can also save entries to a SharePoint list through Microsoft 365, so the supervisor and interns share one logbook, and it exports to Excel (CSV). Open `intern-logbook/index.html`.
 
 ## Future Roadmap
 
